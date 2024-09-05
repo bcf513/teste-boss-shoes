@@ -26,8 +26,11 @@ function Product({
       <p>{description}</p>
       <div className="flex justify-between w-full items-center">
         <h3>R$ {price.toString()}</h3>
-        <div className="border-spacing-4 border-solid border-white rounded-lg border-2 p-2">
-          <IoBagOutline onClick={() => addProduct(id)} />
+        <div
+          className="border-spacing-4 border-solid border-white rounded-lg border-2 p-2"
+          onClick={() => addProduct(id)}
+        >
+          <IoBagOutline />
         </div>
       </div>
     </div>
