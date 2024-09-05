@@ -14,9 +14,9 @@ function Product({
 
   const { id, name, description, photo, price } = product;
   return (
-    <div className="flex flex-col items-center pe-4 rounded-b-3xl p-4 bg-red-900">
+    <div className="flex flex-col items-center pe-4 rounded-b-3xl p-4 backdrop-blur-sm bg-white/30">
       <Image
-        className="h-50 w-50"
+        className="h-50 w-50 drop-shadow-xl "
         src={photo}
         alt={id.toString()}
         width={500}

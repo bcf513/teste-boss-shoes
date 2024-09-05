@@ -7,14 +7,21 @@ import { IoBagOutline } from "react-icons/io5";
 import { CiMenuBurger } from "react-icons/ci";
 import { useCartContext } from "@/providers/Cart";
 import CartModal from "../modals/CartModal";
+import Image from "next/image";
 
 function Header() {
   const [modalOpened, setModalOpened] = useState(false);
   const { cart } = useCartContext();
   return (
-    <header className="flex justify-between w-full">
-      <h1>BOSS SHOES</h1>
-      <div className="flex justify-center gap-5">
+    <header className="flex justify-between items-center w-full">
+      <Image
+        className="h-24 w-24"
+        src="/images/BossShoesLogo.svg"
+        alt="Logo"
+        width={50}
+        height={50}
+      />
+      <div className="flex items-center gap-5 rounded-l-3xl p-4 backdrop-blur-sm bg-white/30">
         <Link href="">HOME</Link>
         <h1>OUR PRODUCTS</h1>
         <HiMagnifyingGlass />
