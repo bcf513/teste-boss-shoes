@@ -1,5 +1,6 @@
 import React from "react";
 import Product from "./Product";
+import products from "@/db/products";
 
 function ProductsSection() {
   return (
@@ -7,36 +8,15 @@ function ProductsSection() {
       <h1 className="flex justify-center">Our Products</h1>
 
       <div className="grid grid-cols-3">
-        <Product
-          title="Green Airoo"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          price={78}
-        />
-        <Product
-          title="Green Airoo"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          price={78}
-        />
-        <Product
-          title="Green Airoo"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          price={78}
-        />
-        <Product
-          title="Green Airoo"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          price={78}
-        />
-        <Product
-          title="Green Airoo"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          price={78}
-        />
-        <Product
-          title="Green Airoo"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          price={78}
-        />
+        {products.map((product) => (
+          <Product
+            key={product.id}
+            productId={product.id}
+            title={product.name}
+            description={product.description}
+            price={product.price}
+          />
+        ))}
       </div>
     </div>
   );
