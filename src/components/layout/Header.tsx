@@ -16,7 +16,7 @@ function Header() {
     <header className="flex justify-between items-center w-full">
       <Image
         className="h-24 w-24"
-        src="/images/BossShoesLogo.svg"
+        src="/svgs/BossShoesLogo.svg"
         alt="Logo"
         width={50}
         height={50}
@@ -25,10 +25,14 @@ function Header() {
         <Link href="">HOME</Link>
         <h1>OUR PRODUCTS</h1>
         <HiMagnifyingGlass />
-        <IoBagOutline onClick={() => setModalOpened(true)} />
-        {cart.length > 0 && (
-          <h1>{cart.reduce((acc, product) => acc + product.quantity, 0)}</h1>
-        )}
+        <div className="relative">
+          <IoBagOutline onClick={() => setModalOpened(true)} />
+          {cart.length > 0 && (
+            <h1 className="absolute -right-2 -bottom-4 rounded-full bg-red-500 text-xs p-1">
+              {cart.reduce((acc, product) => acc + product.quantity, 0)}
+            </h1>
+          )}
+        </div>
         <CiMenuBurger />
       </div>
       {modalOpened && <CartModal closeModal={() => setModalOpened(false)} />}

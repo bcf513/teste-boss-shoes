@@ -7,7 +7,7 @@ function InformativeTag({
   description,
 }: Readonly<{ title: string; description: string }>) {
   return (
-    <div className="flex border-spacing-2 ">
+    <div className="flex border-spacing-2 rounded-3xl p-4 backdrop-blur-sm bg-white/10 ">
       <div className="flex flex-col items-center">
         <h3 className="w-fit">{title}</h3>
         <p>{description}</p>

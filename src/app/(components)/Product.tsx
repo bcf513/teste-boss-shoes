@@ -22,7 +22,7 @@ function Product({
         width={500}
         height={500}
       />
-      <h3>{name}</h3>
+      <h3 className="font-bold text-4xl">{name}</h3>
       <p>{description}</p>
       <div className="flex justify-between w-full items-center">
         <h3>R$ {price.toString()}</h3>
