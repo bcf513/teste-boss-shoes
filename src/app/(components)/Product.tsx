@@ -17,16 +17,15 @@ function Product({
 }>) {
   const { addProduct } = useCartContext();
   return (
-    <div className="flex flex-col items-center pe-4">
+    <div className="flex flex-col items-center pe-4 rounded-b-3xl p-4 bg-red-900">
       <h1>Foto</h1>
       <h3>{title}</h3>
       <p>{description}</p>
-      <div className="flex justify-between w-full">
-        <h3>Rs. {price.toString()}</h3>
-        <IoBagOutline
-          className="border-spacing-4 border-solid border-white border-2"
-          onClick={() => addProduct(productId)}
-        />
+      <div className="flex justify-between w-full items-center">
+        <h3>R$ {price.toString()}</h3>
+        <div className="border-spacing-4 border-solid border-white rounded-lg border-2 p-2">
+          <IoBagOutline onClick={() => addProduct(productId)} />
+        </div>
       </div>
     </div>
   );
