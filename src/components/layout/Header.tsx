@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { IoBagOutline } from "react-icons/io5";
-import { CiMenuBurger } from "react-icons/ci";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { useCartContext } from "@/providers/Cart";
 import CartModal from "../modals/CartModal";
 import Image from "next/image";
@@ -23,21 +23,23 @@ function Header() {
         width={50}
         height={50}
       />
-      <div className="flex items-center gap-5 rounded-l-3xl p-4 backdrop-blur-sm bg-white/30 hidden lg:flex">
-        <Link href="">HOME</Link>
-        <h1>OUR PRODUCTS</h1>
-        <HiMagnifyingGlass />
-        <div className="relative">
-          <IoBagOutline onClick={() => setModalOpened(true)} />
-          {cart.length > 0 && (
-            <h1 className="absolute -right-2 -bottom-4 rounded-full bg-red-500 text-xs p-1">
-              {cart.reduce((acc, product) => acc + product.quantity, 0)}
-            </h1>
-          )}
+      <div className="absolute right-0">
+        <div className="hidden lg:flex items-center gap-5 rounded-l-3xl p-4 backdrop-blur-sm bg-white/30 ">
+          <Link href="">HOME</Link>
+          <h1>OUR PRODUCTS</h1>
+          <HiMagnifyingGlass />
+          <div className="relative">
+            <IoBagOutline onClick={() => setModalOpened(true)} />
+            {cart.length > 0 && (
+              <h1 className="absolute -right-2 -bottom-4 rounded-full bg-red-500 text-xs p-1">
+                {cart.reduce((acc, product) => acc + product.quantity, 0)}
+              </h1>
+            )}
+          </div>
         </div>
       </div>
       <div className="lg:hidden">
-        <CiMenuBurger onClick={() => setMenuOpened(!menuOpened)} />
+        <GiHamburgerMenu onClick={() => setMenuOpened(!menuOpened)} />
       </div>
       {menuOpened && (
         <div className="absolute top-16 right-0 z-10 bg-white shadow-lg rounded-lg p-4 flex flex-col items-start lg:hidden">
