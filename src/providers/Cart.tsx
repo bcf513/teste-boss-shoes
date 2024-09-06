@@ -5,8 +5,8 @@ import {
   createContext,
   useContext,
   useState,
-  ReactNode,
   useEffect,
+  ReactNode,
 } from "react";
 
 interface CartContextProps {
@@ -19,23 +19,29 @@ const CartContext = createContext<CartContextProps | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<ProductInCart[]>([]);
+  // 'isCartLoaded' é necessário para evitar que o carrinho seja sobrescrito com um carrinho vazio
+  // ao recarregar a página por conta das race conditions entre os useEffects
+  const [isCartLoaded, setIsCartLoaded] = useState(false);
 
   useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
+    if (typeof window !== "undefined") {
+      const storedCart = localStorage.getItem("cart");
+      if (storedCart) {
+        setCart(JSON.parse(storedCart));
+      }
+      setIsCartLoaded(true);
     }
   }, []);
 
   useEffect(() => {
-    console.log("cart changed");
-    localStorage.setItem("cart", JSON.stringify(cart));
-    console.table(cart);
-  }, [cart]);
+    if (isCartLoaded) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart, isCartLoaded]);
 
   function addProduct(productId: number) {
-    console.log("addProduct");
-    console.log(productId);
+    if (!isCartLoaded) return;
+
     const productInCart = cart.find((p) => p.id === productId);
     if (productInCart) {
       setCart(
@@ -51,6 +57,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   }
 
   function removeProduct(productId: number) {
+    if (!isCartLoaded) return;
+
     const productInCart = cart.find((p) => p.id === productId);
     if (productInCart?.quantity === 1) {
       setCart(cart.filter((p) => p.id !== productId));
