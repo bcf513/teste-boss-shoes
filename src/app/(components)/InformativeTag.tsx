@@ -1,26 +1,6 @@
 "use client";
 
 import React from "react";
-
-function InformativeTag({
-  title,
-  description,
-}: Readonly<{ title: string; description: string }>) {
-  return (
-    <div className="flex border-spacing-2 rounded-3xl p-4 backdrop-blur-sm bg-white/10 ">
-      <div className="flex flex-col items-center">
-        <h3 className="w-fit">{title}</h3>
-        <p>{description}</p>
-      </div>
-    </div>
-  );
-}
-
-export default InformativeTag;
-/*
-"use client";
-
-import React from "react";
 import { IconType } from "react-icons";
 
 function InformativeTag({
@@ -29,8 +9,8 @@ function InformativeTag({
   description,
 }: Readonly<{ icon: IconType; title: string; description: string }>) {
   return (
-    <div className="flex border-spacing-2 ">
-      <Icon />
+    <div className="flex justify-center items-center gap-4 border-solid border-4 rounded-3xl p-4 backdrop-blur-sm  ">
+      <Icon className="text-4xl" />
 
       <div className="flex flex-col justify-center ">
         <h3>{title}</h3>
@@ -41,4 +21,3 @@ function InformativeTag({
 }
 
 export default InformativeTag;
-*/
