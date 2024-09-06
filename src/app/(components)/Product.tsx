@@ -16,7 +16,7 @@ function Product({
   return (
     <div className="flex flex-col items-center gap-2 rounded-b-3xl p-6 bg-gradient-to-b from-transparent to-white/30 backdrop-blur-sm">
       <Image
-        className="h-50 w-50 drop-shadow-xl "
+        className="w-auto h-auto drop-shadow-xl "
         src={photo}
         alt={id.toString()}
         width={500}
@@ -26,12 +26,13 @@ function Product({
       <p className="text-center text-xs font-bold">{description}</p>
       <div className="flex justify-between w-full items-center">
         <h3>R$ {price.toString()}</h3>
-        <div
+        <button
+          type="button"
           className="border-spacing-4 border-solid border-white rounded-lg border-2 p-2"
           onClick={() => addProduct(id)}
         >
           <IoBagOutline />
-        </div>
+        </button>
       </div>
     </div>
   );
