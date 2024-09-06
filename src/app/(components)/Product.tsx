@@ -14,8 +14,7 @@ function Product({
 
   const { id, name, description, photo, price } = product;
   return (
-    <div className="flex flex-col items-center pe-4 rounded-b-3xl p-4 bg-gradient-to-b from-transparent to-white/30 backdrop-blur-sm">
-      {" "}
+    <div className="flex flex-col items-center gap-2 rounded-b-3xl p-6 bg-gradient-to-b from-transparent to-white/30 backdrop-blur-sm">
       <Image
         className="h-50 w-50 drop-shadow-xl "
         src={photo}
@@ -23,8 +22,8 @@ function Product({
         width={500}
         height={500}
       />
-      <h3 className="font-bold text-4xl">{name}</h3>
-      <p>{description}</p>
+      <h3 className="font-bold text-4xl w-fit text-center">{name}</h3>
+      <p className="text-center text-xs font-bold">{description}</p>
       <div className="flex justify-between w-full items-center">
         <h3>R$ {price.toString()}</h3>
         <div

@@ -8,7 +8,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 
 function InformativeTagsSection() {
   return (
-    <div className="flex w-full gap-4 justify-evenly rounded-3xl p-4 backdrop-blur-sm bg-white/30 flex-col sm:flex-col md:flex-row lg:flex-row">
+    <div className="flex w-full gap-4 justify-evenly rounded-3xl p-8 backdrop-blur-sm bg-white/30 flex-col sm:flex-col md:flex-row lg:flex-row">
       <InformativeTag
         icon={TbTruckDelivery}
         title="Free Shipping World Wide"

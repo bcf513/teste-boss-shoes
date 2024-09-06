@@ -5,7 +5,7 @@ import products from "@/db/products";
 function ProductsSection() {
   return (
     <div className="flex flex-col justify-center w-full">
-      <h1 className="flex justify-center">Our Products</h1>
+      <h1 className="flex justify-center font-bold text-3xl">Our Products</h1>
 
       <div className="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {" "}
