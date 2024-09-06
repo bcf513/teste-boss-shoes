@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { PiHandbagSimpleBold } from "react-icons/pi";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -13,6 +13,31 @@ function Header() {
   const [modalOpened, setModalOpened] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
   const { cart } = useCartContext();
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      console.log("Clicou fora do modal");
+      setMenuOpened(false);
+    }
+  };
+
+  function openCartModal() {
+    setMenuOpened(false);
+    setModalOpened(true);
+  }
+
+  useEffect(() => {
+    if (menuOpened) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpened]);
 
   return (
     <header className="flex justify-between items-center w-full p-4">
@@ -29,7 +54,7 @@ function Header() {
           <h1>OUR PRODUCTS</h1>
           <FaMagnifyingGlass />
           <div className="relative">
-            <PiHandbagSimpleBold onClick={() => setModalOpened(true)} />
+            <PiHandbagSimpleBold onClick={openCartModal} />
             {cart.length > 0 && (
               <h1 className="absolute -right-2 -bottom-4 rounded-full bg-red-500 text-xs p-1">
                 {cart.reduce((acc, product) => acc + product.quantity, 0)}
@@ -39,27 +64,36 @@ function Header() {
         </div>
       </div>
       <div className="relative h-full">
-        <div className="lg:hidden">
-          <GiHamburgerMenu onClick={() => setMenuOpened(!menuOpened)} />
+        <div
+          className="p-4 lg:hidden"
+          onClick={() => setMenuOpened(!menuOpened)}
+        >
+          <GiHamburgerMenu />
         </div>
         {menuOpened && (
-          <div className="absolute top-0 right-0 z-10 bg-white shadow-lg rounded-lg p-6 flex flex-col items-start lg:hidden text-black  whitespace-nowrap ">
-            <Link href="" className="py-2" onClick={() => setMenuOpened(false)}>
+          <div
+            ref={modalRef}
+            className="absolute top-0 right-0 z-10 bg-white shadow-lg rounded-lg p-6 flex flex-col items-start lg:hidden text-black  whitespace-nowrap "
+          >
+            <Link
+              href=""
+              className="py-2 w-full"
+              onClick={() => setMenuOpened(false)}
+            >
               HOME
             </Link>
-            <h1 className="py-2" onClick={() => setMenuOpened(false)}>
+            <h1 className="py-2 w-full" onClick={() => setMenuOpened(false)}>
               OUR PRODUCTS
             </h1>
 
             <div className="flex w-full justify-evenly items-center">
-              <FaMagnifyingGlass />
-              <div
-                className="relative py-2"
-                onClick={() => setModalOpened(true)}
-              >
+              <div className="p-4">
+                <FaMagnifyingGlass />
+              </div>
+              <div className="relative p-4" onClick={openCartModal}>
                 <PiHandbagSimpleBold />
                 {cart.length > 0 && (
-                  <h1 className="absolute -right-2 -bottom-4 rounded-full bg-red-500 text-xs p-1">
+                  <h1 className="absolute -right-2 -bottom-4 rounded-full bg-red-500 text-xs p-1 text-white">
                     {cart.reduce((acc, product) => acc + product.quantity, 0)}
                   </h1>
                 )}
