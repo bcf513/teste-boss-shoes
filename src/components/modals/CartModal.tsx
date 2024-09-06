@@ -9,11 +9,11 @@ function CartModal({ closeModal }: Readonly<{ closeModal: () => void }>) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white rounded-lg shadow-lg p-3 md:p-6 lg:p-6 w-fit max-w-md relative text-black">
+      <div className="bg-white rounded-lg shadow-lg p-3 md:p-6 lg:p-6 w-fit  relative text-black">
         {cart.length ? (
           <>
             <h1 className="text-center font-bold">Your Cart</h1>
-            <table className="w-full border-collapse border-gray-200 text-xs md:text-base">
+            <table className="w-full border-collapse border-gray-200 text-xs md:text-base lg:text-2xl">
               <thead>
                 <tr>
                   <th className="p-1 md:p-2 lg:p-2 text-left">Product</th>
@@ -42,14 +42,14 @@ function CartModal({ closeModal }: Readonly<{ closeModal: () => void }>) {
                     </td>
                     <td className="p-2 flex items-center justify-center gap-2 ">
                       <button
-                        className="w-6 h-6 rounded-full bg-gray-200 hover:bg-red-400"
+                        className="w-6 h-6 rounded-full bg-gray-200 hover:bg-red-400 flex justify-center items-center"
                         onClick={() => removeProduct(product.id)}
                       >
                         -
                       </button>
                       <span className="text-center">{product.quantity}</span>
                       <button
-                        className="w-6 h-6 rounded-full bg-gray-200 hover:bg-green-400"
+                        className="w-6 h-6 rounded-full bg-gray-200 hover:bg-green-400 flex justify-center items-center"
                         onClick={() => addProduct(product.id)}
                       >
                         +
