@@ -56,7 +56,7 @@ function Header() {
           <div className="relative">
             <PiHandbagSimpleBold onClick={openCartModal} />
             {cart.length > 0 && (
-              <h1 className="absolute -right-2 -bottom-4 rounded-full bg-red-500 text-xs p-1">
+              <h1 className="absolute -right-3 -bottom-4  w-5 h-5 rounded-full bg-red-500 text-xs flex items-center justify-center text-white">
                 {cart.reduce((acc, product) => acc + product.quantity, 0)}
               </h1>
             )}
@@ -93,7 +93,7 @@ function Header() {
               <div className="relative p-4" onClick={openCartModal}>
                 <PiHandbagSimpleBold />
                 {cart.length > 0 && (
-                  <h1 className="absolute -right-2 -bottom-4 rounded-full bg-red-500 text-xs p-1 text-white">
+                  <h1 className="absolute -right-0 -bottom-0 w-5 h-5 rounded-full bg-red-500 text-xs flex items-center justify-center text-white">
                     {cart.reduce((acc, product) => acc + product.quantity, 0)}
                   </h1>
                 )}
